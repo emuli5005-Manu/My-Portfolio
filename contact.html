@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contact</title>
+    <link rel="stylesheet" href="sytle.css">
+    <link rel="stylesheet" href="interactive.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="projects.html">projects</a>
+        <a href="my skills.html">my skills</a>
+        <a href="contact.html">contact</a>
+    </nav>
+    <header>
+        <h2>contact me</h2>
+        <p>Have a technology problem contact me and i will
+            help you.</p>
+    </header>
+        <form class="contact-form" action="https://formspree.io/f/mqparjyq" method="post">
+            <div>
+            <label for="name">First Name</label>
+            <input type="text"id="name" name="name">
+            </div>
+            <div>
+            <label for="name">Last Name</label>
+            <input type="text"id="name" name="name">
+            </div>
+            <div>
+            <label for="email">Email</label>
+            <input type="text"id="email" name="email">
+            </div>
+            <div>
+            <label for="services">Services Needed</label>
+            <select id="services" name="services">
+            <option value="computer Repair">Computer Repair</option>
+            <option value="Network">Network Installation</option>
+            <option value="Website">Web Development</option>
+            <option value="Support">IT Support</option>
+            </select>
+            </div>
+            <div>
+            <label for="message">Message</label>
+            <textarea
+                id="message"
+                name="message"
+                rows="6"
+                placeholder="Tell us how we can help you...">
+            </textarea>
+                <button type="submit">send message</button>
+            </div>
+            <div>
+                <button>submit</button>
+            </div>
+        </form>
+        <script src="script.js"></script>
+</body>
+</html>
