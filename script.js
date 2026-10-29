@@ -15,6 +15,13 @@ document.addEventListener('DOMContentLoaded', function () {
         toggle.addEventListener('click', function () {
             nav.classList.toggle('open');
         });
+
+        // Close the menu after a link is tapped, so the section is visible
+        nav.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                nav.classList.remove('open');
+            });
+        });
     }
 
 

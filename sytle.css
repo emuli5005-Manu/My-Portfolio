@@ -410,7 +410,8 @@ nav a.active{
 /* Works together with home.css (theme colors + nav) */
 
 /* ---------- Starry background ---------- */
-.skills-page{
+.skills-page,
+#skills{
     background-color: #070b1a;
     background-image:
         radial-gradient(1px 1px at 20px 30px, #ffffff, transparent),
@@ -529,7 +530,8 @@ nav a.active{
 }
 /* Works together with home.css (theme colors, nav, .eyebrow, .btn, .accent) */
 
-.about-page{
+.about-page,
+#about{
     background:
         radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.22), transparent 45%),
         radial-gradient(circle at 85% 85%, rgba(129, 140, 248, 0.14), transparent 45%),
@@ -863,5 +865,69 @@ nav a.active{
     .footer-bottom {
         flex-direction: column;
         text-align: center;
+    }
+}
+
+/* ============================================================
+   ONE-PAGE LAYOUT: Home, About, Skills, Projects, Contact and
+   the footer all live in index.html and scroll as one page
+   ============================================================ */
+
+/* Menu links stop below the sticky menu bar instead of under it */
+#home,
+#about,
+#skills,
+#projects,
+#contact{
+    scroll-margin-top: 80px;
+}
+
+/* A fixed background is ignored or janky on phones, so scroll normally */
+#about,
+#skills{
+    background-attachment: scroll;
+}
+
+/* Skills: full-width starry strip, content centred inside */
+.skills-section{
+    width: 100%;
+}
+
+.skills-section .skills{
+    padding: 80px 0 100px;
+}
+
+/* Contact: heading above the form */
+.contact-section{
+    padding: 60px 0 20px;
+}
+
+.contact-intro{
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-intro h2{
+    font-size: clamp(30px, 5vw, 44px);
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.contact-intro p{
+    color: var(--muted);
+}
+
+/* Projects intro sits above the grid */
+.portfolio p{
+    color: var(--muted);
+    margin-bottom: 40px;
+}
+
+/* On phones 100vh includes the browser bar, 100svh is the visible area */
+@supports (min-height: 100svh){
+    .hero,
+    .about{
+        min-height: calc(100svh - 70px);
     }
 }
