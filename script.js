@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
             function revealSite() {
                 preloader.hidden = true;
                 preloader.setAttribute('aria-hidden', 'true');
-                animatePage();
             }
 
             if (window.gsap) {
@@ -71,19 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 preloader.classList.add('preloader-finished');
                 window.setTimeout(revealSite, 250);
             }
-        }
-
-        function animatePage() {
-            if (!window.gsap) return;
-
-            const heroItems = document.querySelectorAll('.hero-copy > *, .hero-visual');
-            window.gsap.fromTo(heroItems, { autoAlpha: 0, y: 18 }, {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.7,
-                stagger: 0.08,
-                ease: 'power2.out'
-            });
         }
 
         preloader.hidden = false;
@@ -117,21 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const revealTargets = document.querySelectorAll('[data-reveal]');
-    if (!reducedMotion && revealTargets.length && window.gsap && window.ScrollTrigger) {
-        revealTargets.forEach(function (element) {
-            window.gsap.fromTo(element, { autoAlpha: 0, y: 22 }, {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.75,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: element,
-                    start: 'top 88%',
-                    once: true
-                }
-            });
-        });
-    } else if (!reducedMotion && revealTargets.length && 'IntersectionObserver' in window) {
+    if (!reducedMotion && revealTargets.length && 'IntersectionObserver' in window) {
         document.body.classList.add('reveal-enabled');
         const observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
