@@ -577,6 +577,7 @@ h1, h2, h3 {
 
 .skills-section .section-heading {
     margin-bottom: 48px;
+    padding-inline: clamp(16px, 2.4vw, 30px);
 }
 
 .skills-layout {
@@ -588,7 +589,7 @@ h1, h2, h3 {
     grid-template-columns: 58px minmax(160px, 0.8fr) minmax(0, 1.2fr);
     align-items: center;
     gap: 28px;
-    padding: 28px 0;
+    padding: 28px clamp(16px, 2.4vw, 30px);
     border-bottom: 1px solid var(--line);
 }
 
