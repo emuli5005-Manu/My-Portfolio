@@ -3,37 +3,313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <meta name="theme-color" content="#080d18">
+    <meta name="description" content="Emmanuel Muli is a web developer and ICT student creating responsive websites and practical digital experiences.">
+    <title>Emmanuel Muli — Web Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="sytle.css">
-    <link rel="stylesheet" href="interactive.css">
 </head>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About Me</a>
-        <a href="my skills.html">My Skills</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">contact</a>
-    </nav>
-    <body>
-    <header class="hero">
-        <div class="scroll-progress"></div>
-    <div class="hero-inner">
-
-        <div class="hero-content">
-            <span class="eyebrow">Emmanuel Muli Portfolio</span>
-            <h1>Hi, I'm <span class="accent">Emmanuel Muli</span></h1>
-            <h2 data-typing="I'm a frontend web developer"></h2>
-            <p>Professional website development begins with understanding the purpose, target audience, and overall goals of the website. The design process focuses on creating a clean and modern interface with clear navigation, consistent typography, balanced layouts, and a responsive structure that works well across desktops, tablets, and mobile devices. The frontend is then developed using HTML, CSS, and JavaScript to transform the design into a functional and interactive website. Attention is given to usability, performance, accessibility, visual consistency, and responsive behavior to ensure the final website is not only visually professional but also easy and enjoyable to use.
-</p>
-            <a href="projects.html" class="btn">View my work</a>
+<body class="site-body">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="preloader" id="preloader" aria-hidden="true" hidden>
+        <div class="preloader-content">
+            <span class="preloader-mark">&lt;/&gt;</span>
+            <p>EMMANUEL MULI</p>
+            <div class="preloader-track" aria-hidden="true"><span id="load-progress"></span></div>
+            <span class="preloader-count" id="load-count">00</span>
         </div>
-
-        <div class="hero-image">
-            <img src="images/my photo.png" alt="Emmanuel Muli">
-        </div>
-
     </div>
-</header>
-<script src="script.js"></script>
+
+    <header class="site-header">
+        <nav class="site-nav" aria-label="Main navigation">
+            <a class="brand-link" href="#home" aria-label="Emmanuel Muli home">
+                <span class="brand-mark">&lt;/&gt;</span>
+                <span>EM<span class="brand-period">.</span></span>
+            </a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation menu">
+                <span></span><span></span>
+            </button>
+            <div class="nav-links" id="site-navigation">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#services">Services</a>
+                <a href="#contact" class="nav-contact">Let's talk <span aria-hidden="true">↗</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="hero section-wrap" id="home" aria-labelledby="hero-title">
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow"><span class="eyebrow-line"></span> Web developer <span class="eyebrow-dot">·</span> ICT student</p>
+                    <h1 id="hero-title">Thoughtful websites.<br><span class="text-gradient">Built for people.</span></h1>
+                    <p class="hero-description">I'm Emmanuel Muli. I design and build clear, responsive websites that help businesses share what they do and connect with the people they serve.</p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#projects">Explore my work <span aria-hidden="true">↘</span></a>
+                        <a class="button button-quiet" href="#contact">Start a conversation <span aria-hidden="true">↗</span></a>
+                    </div>
+                    <div class="hero-note">
+                        <span class="note-rule"></span>
+                        <p>Web development <span>·</span> ICT <span>·</span> practical problem solving</p>
+                    </div>
+                </div>
+                <div class="hero-visual" aria-label="Portrait of Emmanuel Muli">
+                    <div class="visual-frame">
+                        <span class="frame-corner frame-corner-top" aria-hidden="true"></span>
+                        <img src="images/my photo.png" alt="Emmanuel Muli at his desk" fetchpriority="high">
+                        <span class="visual-index">01 <span>/</span> 04</span>
+                    </div>
+                    <div class="visual-caption">
+                        <span class="caption-line"></span>
+                        <span>Based in Nairobi, Kenya</span>
+                    </div>
+                    <span class="visual-orbit orbit-one" aria-hidden="true"></span>
+                    <span class="visual-orbit orbit-two" aria-hidden="true"></span>
+                </div>
+            </div>
+            <a class="scroll-cue" href="#about"><span></span> Scroll to explore</a>
+        </section>
+
+        <section class="about-section section-wrap section-space" id="about" aria-labelledby="about-title">
+            <div class="section-heading" data-reveal>
+                <p class="section-kicker">01 / A little about me</p>
+                <h2 id="about-title">Curiosity meets<br><span class="text-muted">practical thinking.</span></h2>
+            </div>
+            <div class="about-layout">
+                <div class="about-photo" data-reveal>
+                    <img src="images/my photo about.png" alt="Emmanuel Muli" loading="lazy">
+                    <span class="photo-caption">EMMANUEL MULI <span>— WEB &amp; ICT</span></span>
+                </div>
+                <div class="about-copy" data-reveal>
+                    <p class="lead-copy">I’m an ICT student at The Kiambu National Polytechnic, pursuing a Diploma in ICT Technician, with a growing focus on building useful experiences for the web.</p>
+                    <p>I create clean, modern websites with HTML, CSS, and JavaScript. I care about straightforward navigation, thoughtful details, and making sure a site works as well on a phone as it does on a desktop.</p>
+                    <p>Alongside web development, I work with computer repair and network installation. I’ve also built a school management system for entering student data and helping students view their results.</p>
+                    <div class="about-facts">
+                        <div><span class="fact-number">01</span><span>ICT student</span></div>
+                        <div><span class="fact-number">02</span><span>Web development</span></div>
+                        <div><span class="fact-number">03</span><span>Computer &amp; network support</span></div>
+                    </div>
+                    <a class="text-link" href="#contact">More about working together <span aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills-section section-wrap section-space" id="skills" aria-labelledby="skills-title">
+            <div class="section-heading section-heading-row" data-reveal>
+                <div>
+                    <p class="section-kicker">02 / Tools I work with</p>
+                    <h2 id="skills-title">Skills for making<br><span class="text-muted">ideas useful.</span></h2>
+                </div>
+                <p class="heading-aside">A practical mix of web technologies, programming languages, and hands-on ICT skills.</p>
+            </div>
+            <div class="skills-layout">
+                <div class="skill-group" data-reveal>
+                    <span class="group-index">01</span>
+                    <div>
+                        <h3>Web</h3>
+                        <p>Designing and building responsive interfaces.</p>
+                    </div>
+                    <ul class="skill-list">
+                        <li>HTML</li><li>CSS</li><li>JavaScript</li>
+                    </ul>
+                </div>
+                <div class="skill-group" data-reveal>
+                    <span class="group-index">02</span>
+                    <div>
+                        <h3>Programming</h3>
+                        <p>Exploring programming fundamentals and logic.</p>
+                    </div>
+                    <ul class="skill-list">
+                        <li>C</li><li>C++</li>
+                    </ul>
+                </div>
+                <div class="skill-group" data-reveal>
+                    <span class="group-index">03</span>
+                    <div>
+                        <h3>ICT &amp; workflow</h3>
+                        <p>Practical support for devices, networks, and projects.</p>
+                    </div>
+                    <ul class="skill-list">
+                        <li>Git / GitHub</li><li>Network installation</li><li>Computer repair</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-section section-wrap section-space" id="projects" aria-labelledby="projects-title">
+            <div class="section-heading section-heading-row" data-reveal>
+                <div>
+                    <p class="section-kicker">03 / Selected work</p>
+                    <h2 id="projects-title">Built with purpose<span class="text-gradient">.</span></h2>
+                </div>
+                <p class="heading-aside">A selection of web, software, and ICT work. Each project starts with a real need.</p>
+            </div>
+            <div class="projects-grid">
+                <article class="project-card project-featured" data-reveal>
+                    <div class="project-art chicken-art" aria-hidden="true">
+                        <span class="project-art-index">FEATURED WEBSITE</span>
+                        <span class="chicken-monogram">TC<span>.</span></span>
+                        <span class="chicken-title">TABITHA<br>CHICKEN COMPANY</span>
+                        <span class="chicken-location">MAKUENI COUNTY · KENYA</span>
+                        <span class="art-corner"></span>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-topline"><span>Business website</span><span>01</span></div>
+                        <h3>Tabitha Chicken Company</h3>
+                        <p>A website built for a chicken business to present its products, display prices, and make it easier for customers to explore the business and place orders.</p>
+                        <div class="project-actions">
+                            <a class="text-link" href="https://emuli5005-manu.github.io/Tabitha-Chicken-Company/" target="_blank" rel="noopener noreferrer">View Live Website <span aria-hidden="true">↗</span></a>
+                            <a class="text-link text-link-secondary" href="https://github.com/emuli5005-Manu/Tabitha-Chicken-Company" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card" data-reveal>
+                    <div class="project-image">
+                        <img src="images/Business Website (2).jpg" alt="Responsive business website shown on a laptop and phone" loading="lazy">
+                        <span class="image-index">02</span>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-topline"><span>Web development</span><span>02</span></div>
+                        <h3>Business Website</h3>
+                        <p>A professional website designed for small businesses to showcase their services and reach customers online.</p>
+                    </div>
+                </article>
+                <article class="project-card" data-reveal>
+                    <div class="project-image">
+                        <img src="images/School Management System.jpg" alt="School management system project" loading="lazy">
+                        <span class="image-index">03</span>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-topline"><span>Software project</span><span>03</span></div>
+                        <h3>School Management System</h3>
+                        <p>A system where a school can enter student data and students can view their results.</p>
+                    </div>
+                </article>
+                <article class="project-card" data-reveal>
+                    <div class="project-image">
+                        <img src="images/Network Installation.jpg" alt="Network installation project" loading="lazy">
+                        <span class="image-index">04</span>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-topline"><span>ICT support</span><span>04</span></div>
+                        <h3>Network Installation</h3>
+                        <p>A network installation project helping people in the surrounding area get connected.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="services-section section-wrap section-space" id="services" aria-labelledby="services-title">
+            <div class="services-intro" data-reveal>
+                <p class="section-kicker">04 / How I can help</p>
+                <h2 id="services-title">Good work starts<br>with a <span class="text-gradient">clear purpose.</span></h2>
+                <p>I work with you to understand what you need, then build a digital experience that is clear, practical, and ready for real people.</p>
+                <a class="button button-primary" href="#contact">Discuss a project <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="service-list">
+                <article class="service-item" data-reveal>
+                    <span class="service-number">01</span>
+                    <div><h3>Website design &amp; development</h3><p>Purposeful websites with clear structure, useful content, and thoughtful visual design.</p></div>
+                    <span class="service-arrow" aria-hidden="true">↗</span>
+                </article>
+                <article class="service-item" data-reveal>
+                    <span class="service-number">02</span>
+                    <div><h3>Responsive business &amp; portfolio sites</h3><p>Mobile-friendly websites that help a business or individual present their work online.</p></div>
+                    <span class="service-arrow" aria-hidden="true">↗</span>
+                </article>
+                <article class="service-item" data-reveal>
+                    <span class="service-number">03</span>
+                    <div><h3>Website improvements &amp; upkeep</h3><p>Refresh an existing site, improve its usability, or get help with ongoing updates.</p></div>
+                    <span class="service-arrow" aria-hidden="true">↗</span>
+                </article>
+                <article class="service-item" data-reveal>
+                    <span class="service-number">04</span>
+                    <div><h3>Computer &amp; network support</h3><p>Practical help with computer repair and network installation.</p></div>
+                    <span class="service-arrow" aria-hidden="true">↗</span>
+                </article>
+            </div>
+        </section>
+
+        <section class="contact-section section-wrap section-space" id="contact" aria-labelledby="contact-title">
+            <div class="contact-panel">
+                <div class="contact-copy" data-reveal>
+                    <p class="section-kicker">05 / Get in touch</p>
+                    <h2 id="contact-title">Have an idea?<br><span class="text-gradient">Let's make it real.</span></h2>
+                    <p>Tell me a little about what you need. Whether it’s a new website, an improvement, or ICT support, I’d be glad to hear from you.</p>
+                    <div class="contact-details">
+                        <a href="mailto:emuli5005@gmail.com"><span class="contact-label">EMAIL</span><span>emuli5005@gmail.com ↗</span></a>
+                        <a href="tel:+254711318746"><span class="contact-label">PHONE</span><span>+254 711 318 746 ↗</span></a>
+                        <p><span class="contact-label">LOCATION</span><span>Nairobi, Kenya</span></p>
+                    </div>
+                </div>
+                <form class="contact-form" action="https://formspree.io/f/mqparjyq" method="post" data-reveal>
+                    <div class="form-heading"><span>Send a message</span><span class="form-required">* Required</span></div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="contact-name">Your name <span aria-hidden="true">*</span></label>
+                            <input type="text" id="contact-name" name="name" autocomplete="name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="contact-email">Email address <span aria-hidden="true">*</span></label>
+                            <input type="email" id="contact-email" name="email" autocomplete="email" required>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="contact-service">What can I help with?</label>
+                        <select id="contact-service" name="service">
+                            <option value="Website design and development">Website design &amp; development</option>
+                            <option value="Website improvement">Website improvement</option>
+                            <option value="Computer repair">Computer repair</option>
+                            <option value="Network installation">Network installation</option>
+                            <option value="Other">Something else</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="contact-message">A little about your project <span aria-hidden="true">*</span></label>
+                        <textarea id="contact-message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button class="button button-primary form-submit" type="submit">Send message <span aria-hidden="true">↗</span></button>
+                    <p class="form-message" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-main section-wrap">
+            <div class="footer-brand">
+                <a class="brand-link" href="#home"><span class="brand-mark">&lt;/&gt;</span><span>EM<span class="brand-period">.</span></span></a>
+                <p>Building thoughtful digital experiences, one useful idea at a time.</p>
+            </div>
+            <div class="footer-column">
+                <h2>Explore</h2>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#services">Services</a>
+            </div>
+            <div class="footer-column">
+                <h2>Connect</h2>
+                <a href="mailto:emuli5005@gmail.com">Email</a>
+                <a href="tel:+254711318746">Call me</a>
+                <a href="https://github.com/emuli5005-Manu" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+                <a href="https://www.linkedin.com/in/muli-emmanuel-19830936b" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+                <a href="https://tiktok.com/@user2807249811756" target="_blank" rel="noopener noreferrer">TikTok <span aria-hidden="true">↗</span></a>
+            </div>
+            <a class="footer-cta" href="#contact">Have a project<br>in mind? <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="footer-bottom section-wrap">
+            <p>© <span id="current-year">2026</span> Emmanuel Muli. All rights reserved.</p>
+            <a href="#home">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script defer src="script.js"></script>
 </body>
 </html>

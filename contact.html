@@ -8,13 +8,12 @@
     <link rel="stylesheet" href="interactive.css">
 </head>
 <body>
-    <div class="scroll-progress"></div>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About Me</a>
-        <a href="projects.html">projects</a>
-        <a href="my skills.html">my skills</a>
-        <a href="contact.html">contact</a>
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About Me</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#skills">My Skills</a>
+        <a href="index.html#contact">Contact</a>
     </nav>
     <header>
         <h2>contact me</h2>
@@ -23,20 +22,20 @@
     </header>
         <form class="contact-form" action="https://formspree.io/f/mqparjyq" method="post">
             <div>
-            <label for="name">First Name</label>
-            <input type="text"id="name" name="name">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="firstName" autocomplete="given-name" required>
             </div>
             <div>
-            <label for="name">Last Name</label>
-            <input type="text"id="name" name="name">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="lastName" autocomplete="family-name" required>
             </div>
             <div>
             <label for="email">Email</label>
-            <input type="text"id="email" name="email">
+            <input type="email" id="email" name="email" autocomplete="email" required>
             </div>
             <div>
             <label for="services">Services Needed</label>
-            <select id="services" name="services">
+            <select id="services" name="services" required>
             <option value="computer Repair">Computer Repair</option>
             <option value="Network">Network Installation</option>
             <option value="Website">Web Development</option>
@@ -49,12 +48,10 @@
                 id="message"
                 name="message"
                 rows="6"
-                placeholder="Tell us how we can help you...">
+                placeholder="Tell us how we can help you..."
+                required>
             </textarea>
-                <button type="submit">send message</button>
-            </div>
-            <div>
-                <button>submit</button>
+                <button type="submit">Send message</button>
             </div>
         </form>
         <footer class="footer">
@@ -114,19 +111,11 @@
         <!-- Quick Links -->
         <div class="footer-links">
             <h3>Quick Links</h3>
-            <a href="#home">Home</a>
-            <a href="#about">About Me</a>
-            <a href="#skills">My Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </div>
-
-        <!-- Legal -->
-        <div class="footer-links">
-            <h3>Legal</h3>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms &amp; Conditions</a>
-            <a href="#">Cookie Policy</a>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#about">About Me</a>
+            <a href="index.html#skills">My Skills</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#contact">Contact</a>
         </div>
 
         <!-- Get in touch -->
@@ -171,7 +160,7 @@
 </footer>
 
 <!-- Back to top (one button only) -->
-<a href="#home" class="back-to-top" aria-label="Back to top">
+<a href="index.html#home" class="back-to-top" aria-label="Back to top">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M12 19V5M5 12l7-7 7 7"/>

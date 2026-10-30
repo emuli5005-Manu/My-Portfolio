@@ -1,189 +1,225 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const navigation = document.querySelector('nav');
 
-    /* ============================================================
-       1. MOBILE MENU (hamburger button is created automatically)
-       ============================================================ */
-    const nav = document.querySelector('nav');
+    if (navigation) {
+        let toggle = navigation.querySelector('.nav-toggle');
 
-    if (nav) {
-        const toggle = document.createElement('button');
-        toggle.className = 'nav-toggle';
-        toggle.setAttribute('aria-label', 'Toggle menu');
-        toggle.innerHTML = '&#9776; Menu';
-        nav.prepend(toggle);
+        if (!toggle) {
+            toggle = document.createElement('button');
+            toggle.className = 'nav-toggle';
+            toggle.type = 'button';
+            toggle.setAttribute('aria-label', 'Open navigation menu');
+            toggle.innerHTML = '<span></span><span></span>';
+            navigation.prepend(toggle);
+        }
 
         toggle.addEventListener('click', function () {
-            nav.classList.toggle('open');
+            const isOpen = navigation.classList.toggle('is-open');
+            navigation.classList.toggle('open', isOpen);
+            toggle.setAttribute('aria-expanded', String(isOpen));
+            toggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
         });
 
-        // Close the menu after a link is tapped, so the section is visible
-        nav.querySelectorAll('a').forEach(function (link) {
+        navigation.querySelectorAll('a').forEach(function (link) {
             link.addEventListener('click', function () {
-                nav.classList.remove('open');
+                navigation.classList.remove('is-open', 'open');
+                toggle.setAttribute('aria-expanded', 'false');
+                toggle.setAttribute('aria-label', 'Open navigation menu');
             });
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && navigation.classList.contains('is-open')) {
+                navigation.classList.remove('is-open', 'open');
+                toggle.setAttribute('aria-expanded', 'false');
+                toggle.setAttribute('aria-label', 'Open navigation menu');
+                toggle.focus();
+            }
         });
     }
 
+    const year = document.getElementById('current-year') || document.getElementById('year');
+    if (year) {
+        year.textContent = String(new Date().getFullYear());
+    }
 
-    /* ============================================================
-       2. TYPING EFFECT
-       Use on any element:  <h2 data-typing="Text one|Text two|Text three">
-       ============================================================ */
-    const typingEl = document.querySelector('[data-typing]');
+    const preloader = document.getElementById('preloader');
+    if (preloader && !reducedMotion) {
+        const progress = document.getElementById('load-progress');
+        const count = document.getElementById('load-count');
+        let finished = false;
 
-    if (typingEl) {
-        // Uses data-typing if it has text, otherwise the text already inside the tag
-        const source = (typingEl.dataset.typing || typingEl.textContent).trim();
-        const words = source.split('|').filter(function (w) { return w.trim() !== ''; });
+        function finishLoading() {
+            if (finished) return;
+            finished = true;
 
-        if (words.length > 0) {
-            let wordIndex = 0;
-            let charIndex = 0;
-            let deleting = false;
-
-            function type() {
-                const word = words[wordIndex];
-
-                charIndex += deleting ? -1 : 1;
-                typingEl.textContent = word.substring(0, charIndex);
-
-                let delay = deleting ? 40 : 80;
-
-                if (!deleting && charIndex >= word.length) {
-                    delay = 1800;            // pause when a word is complete
-                    deleting = true;
-                } else if (deleting && charIndex <= 0) {
-                    deleting = false;
-                    wordIndex = (wordIndex + 1) % words.length;
-                    delay = 400;
-                }
-
-                setTimeout(type, delay);
+            function revealSite() {
+                preloader.hidden = true;
+                preloader.setAttribute('aria-hidden', 'true');
+                animatePage();
             }
 
-            type();
+            if (window.gsap) {
+                window.gsap.to(preloader, {
+                    autoAlpha: 0,
+                    duration: 0.45,
+                    ease: 'power1.out',
+                    onComplete: revealSite
+                });
+            } else {
+                preloader.classList.add('preloader-finished');
+                window.setTimeout(revealSite, 250);
+            }
         }
+
+        function animatePage() {
+            if (!window.gsap) return;
+
+            const heroItems = document.querySelectorAll('.hero-copy > *, .hero-visual');
+            window.gsap.fromTo(heroItems, { autoAlpha: 0, y: 18 }, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.7,
+                stagger: 0.08,
+                ease: 'power2.out'
+            });
+        }
+
+        preloader.hidden = false;
+        preloader.setAttribute('aria-hidden', 'false');
+
+        if (window.gsap && window.gsap.registerPlugin && window.ScrollTrigger) {
+            window.gsap.registerPlugin(window.ScrollTrigger);
+        }
+
+        if (window.gsap) {
+            const counter = { value: 0 };
+            window.gsap.to(progress, { width: '100%', duration: 1.1, ease: 'power2.inOut' });
+            window.gsap.to(counter, {
+                value: 100,
+                duration: 1.1,
+                ease: 'power2.inOut',
+                onUpdate: function () {
+                    if (count) count.textContent = String(Math.round(counter.value)).padStart(2, '0');
+                },
+                onComplete: finishLoading
+            });
+        } else {
+            if (progress) progress.style.width = '100%';
+            if (count) count.textContent = '100';
+            window.setTimeout(finishLoading, 250);
+        }
+
+        window.setTimeout(finishLoading, 1800);
+    } else if (preloader) {
+        preloader.hidden = true;
     }
 
-
-    /* ============================================================
-       3. SCROLL REVEAL (elements fade in as you scroll down)
-       ============================================================ */
-    const revealTargets = document.querySelectorAll(
-        '.project-card, .skill-card, .about-content, .about-image, .contact-form'
-    );
-
-    revealTargets.forEach(function (el, i) {
-        el.classList.add('reveal');
-        el.style.transitionDelay = (i % 3) * 0.1 + 's';   // small stagger
-    });
-
-    if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+    const revealTargets = document.querySelectorAll('[data-reveal]');
+    if (!reducedMotion && revealTargets.length && window.gsap && window.ScrollTrigger) {
+        revealTargets.forEach(function (element) {
+            window.gsap.fromTo(element, { autoAlpha: 0, y: 22 }, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.75,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 88%',
+                    once: true
                 }
             });
-        }, { threshold: 0.15 });
+        });
+    } else if (!reducedMotion && revealTargets.length && 'IntersectionObserver' in window) {
+        document.body.classList.add('reveal-enabled');
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.12 });
 
-        revealTargets.forEach(function (el) { observer.observe(el); });
+        revealTargets.forEach(function (element) {
+            observer.observe(element);
+        });
     } else {
-        revealTargets.forEach(function (el) { el.classList.add('visible'); });
+        revealTargets.forEach(function (element) {
+            element.classList.add('is-visible');
+        });
     }
 
-
-    /* ============================================================
-       4. BACK TO TOP BUTTON (created automatically)
-       ============================================================ */
-    const toTop = document.createElement('button');
-    toTop.className = 'to-top';
-    toTop.setAttribute('aria-label', 'Back to top');
-    toTop.innerHTML = '&uarr;';
-    document.body.appendChild(toTop);
-
-    window.addEventListener('scroll', function () {
-        toTop.classList.toggle('show', window.scrollY > 300);
-    });
-
-    toTop.addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-
-    /* ============================================================
-       5. CONTACT FORM (validation + real sending via Formspree)
-       ============================================================ */
     const form = document.querySelector('.contact-form');
-
     if (form) {
-        // Message box shown under the form
-        const message = document.createElement('p');
-        message.className = 'form-message';
-        form.appendChild(message);
+        let message = form.querySelector('.form-message');
+        if (!message) {
+            message = document.createElement('p');
+            message.className = 'form-message';
+            message.setAttribute('role', 'status');
+            message.setAttribute('aria-live', 'polite');
+            form.appendChild(message);
+        }
 
         const fields = form.querySelectorAll('input, textarea, select');
-
-        // Remove the red border as soon as the person starts typing
         fields.forEach(function (field) {
             field.addEventListener('input', function () {
                 field.classList.remove('error');
+                field.removeAttribute('aria-invalid');
+            });
+            field.addEventListener('change', function () {
+                field.classList.remove('error');
+                field.removeAttribute('aria-invalid');
             });
         });
 
         form.addEventListener('submit', async function (event) {
             event.preventDefault();
+            if (!form.reportValidity()) return;
 
-            let valid = true;
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            fields.forEach(function (field) {
-                if (field.type === 'submit' || field.type === 'button') return;
-
-                const value = field.value.trim();
-                let bad = value === '';
-
-                if (field.type === 'email' && value !== '' && !emailPattern.test(value)) {
-                    bad = true;
-                }
-
-                field.classList.toggle('error', bad);
-                if (bad) valid = false;
-            });
-
-            if (!valid) {
-                message.textContent = 'Please fill in every field correctly.';
+            const submitButton = form.querySelector('button[type="submit"], input[type="submit"]');
+            if (!submitButton) {
+                message.textContent = 'The form could not be submitted. Please contact me by email instead.';
                 message.className = 'form-message fail';
                 return;
             }
 
-            const button = form.querySelector('button[type="submit"]');
-            button.disabled = true;
-            button.textContent = 'Sending...';
+            const originalLabel = submitButton.tagName === 'INPUT' ? submitButton.value : submitButton.textContent;
+            submitButton.disabled = true;
+            if (submitButton.tagName === 'INPUT') {
+                submitButton.value = 'Sending...';
+            } else {
+                submitButton.textContent = 'Sending...';
+            }
+            message.textContent = '';
+            message.className = 'form-message';
 
             try {
                 const response = await fetch(form.action, {
                     method: 'POST',
                     body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
+                    headers: { Accept: 'application/json' }
                 });
 
-                if (response.ok) {
-                    message.textContent = 'Thank you! Your message has been sent.';
-                    message.className = 'form-message success';
-                    form.reset();
-                } else {
-                    throw new Error('Server error');
+                if (!response.ok) {
+                    throw new Error('Contact form request failed with status ' + response.status);
                 }
-            } catch (error) {
-                message.textContent = 'Sorry, something went wrong. Please try again.';
-                message.className = 'form-message fail';
-            }
 
-            button.disabled = false;
-            button.textContent = 'Send Message';
+                message.textContent = 'Thank you. Your message has been sent.';
+                message.className = 'form-message success';
+                form.reset();
+            } catch (error) {
+                console.error('Contact form submission failed:', error);
+                message.textContent = 'Your message could not be sent. Please try again or email me directly.';
+                message.className = 'form-message fail';
+            } finally {
+                submitButton.disabled = false;
+                if (submitButton.tagName === 'INPUT') {
+                    submitButton.value = originalLabel;
+                } else {
+                    submitButton.textContent = originalLabel;
+                }
+            }
         });
     }
-
 });
