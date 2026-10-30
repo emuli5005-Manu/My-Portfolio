@@ -1236,8 +1236,12 @@ body:not(.site-body) > nav a:hover, body:not(.site-body) > nav a.active {
     padding: 60px 24px 100px;
 }
 
-.portfolio > h1, .portfolio > p, body > header {
+.portfolio > h1, .portfolio > h2, .portfolio > p, body > header {
     text-align: center;
+}
+
+.portfolio > h2 {
+    font-size: clamp(28px, 4vw, 40px);
 }
 
 .portfolio > p {
